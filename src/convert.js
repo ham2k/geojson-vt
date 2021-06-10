@@ -128,11 +128,17 @@ function convertLines(rings, out, tolerance, isPolygon) {
 }
 
 function projectX(x) {
-    return x / 360 + 0.5;
+    // return x / 360 + 0.5;
+
+    // use equirectangular (4326) projection instead of Mercator
+    return (x / 180) + 1
 }
 
 function projectY(y) {
-    const sin = Math.sin(y * Math.PI / 180);
-    const y2 = 0.5 - 0.25 * Math.log((1 + sin) / (1 - sin)) / Math.PI;
-    return y2 < 0 ? 0 : y2 > 1 ? 1 : y2;
+    // const sin = Math.sin(y * Math.PI / 180);
+    // const y2 = 0.5 - 0.25 * Math.log((1 + sin) / (1 - sin)) / Math.PI;
+    // return y2 < 0 ? 0 : y2 > 1 ? 1 : y2;
+
+    // use equirectangular (4326) projection instead of Mercator
+    return -(y / 180) + 0.5
 }
